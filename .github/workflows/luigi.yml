@@ -40,6 +40,6 @@ jobs:
           python -VV
           python -m site
           python -m pip install --upgrade pip setuptools wheel
-          python -m pip install --upgrade virtualenv tox<3.0 tox-gh-actions
+          python -m pip install --upgrade virtualenv 'tox<3.0' tox-gh-actions
       - name: "Run tox with ${{ matrix.python-version }}"
         run: "python -m tox -c tox.ini"
