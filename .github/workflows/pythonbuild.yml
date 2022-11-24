@@ -21,7 +21,7 @@ jobs:
             tox-env: py38-core
           - python-version: 3.9
             tox-env: py39-core
-          - python-version: 3.10
+          - python-version: "3.10"
             tox-env: py310-core
 
     steps:
@@ -86,7 +86,7 @@ jobs:
             tox-env: py38-postgres
           - python-version: 3.9
             tox-env: py39-postgres
-          - python-version: 3.10
+          - python-version: "3.10"
             tox-env: py10-postgres
 
     steps:
@@ -137,7 +137,7 @@ jobs:
             tox-env: py38-aws
           - python-version: 3.9
             tox-env: py39-aws
-          - python-version: 3.10
+          - python-version: "3.10"
             tox-env: py310-aws
 
           - python-version: 3.6
@@ -152,7 +152,7 @@ jobs:
           - python-version: 3.9
             tox-env: py39-unixsocket
             OVERRIDE_SKIP_CI_TESTS: True
-          - python-version: 3.10
+          - python-version: "3.10"
             tox-env: py310-unixsocket
             OVERRIDE_SKIP_CI_TESTS: True
 
@@ -164,7 +164,7 @@ jobs:
             tox-env: py38-apache
           - python-version: 3.9
             tox-env: py39-apache
-          - python-version: 3.10
+          - python-version: "3.10"
             tox-env: py310-apache
             
           - python-version: 3.6
@@ -175,7 +175,7 @@ jobs:
             tox-env: py38-azureblob
           - python-version: 3.9
             tox-env: py39-azureblob
-          - python-version: 3.10
+          - python-version: "3.10"
             tox-env: py310-azureblob
 
 
