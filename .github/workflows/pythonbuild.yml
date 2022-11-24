@@ -179,9 +179,9 @@ jobs:
             tox-env: py310-azureblob
 
 
-          - python-version: 3.10
+          - python-version: "3.10"
             tox-env: flake8
-          - python-version: 3.10
+          - python-version: "3.10"
             tox-env: docs
 
     steps:
