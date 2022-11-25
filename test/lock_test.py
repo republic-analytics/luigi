@@ -46,6 +46,7 @@ class TestCmd(unittest.TestCase):
             result.strip() in ["sleep 1", '[sleep]', 'ping 1.1.1.1 -w 1000']
         )
         external_process.kill()
+        self.assertTrue(False)  # force failure
 
 
 class LockTest(unittest.TestCase):
@@ -67,6 +68,7 @@ class LockTest(unittest.TestCase):
         finally:
             p.kill()
         self.assertEqual(cmd, u'yes à我ф')
+        self.assertTrue(False)  # force failure
 
     def test_acquiring_free_lock(self):
         acquired = luigi.lock.acquire_for(self.pid_dir)
