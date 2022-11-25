@@ -33,6 +33,7 @@ def getpcmd(pid):
 
     :param pid:
     """
+    print(f"getpcmd - pid: {pid}")
     if os.name == "nt":
         # Use wmic command instead of ps on Windows.
         cmd = 'wmic path win32_process where ProcessID=%s get Commandline 2> nul' % (pid, )
@@ -49,7 +50,9 @@ def getpcmd(pid):
         try:
             p = Popen(['pgrep', '-lf', '-F', pidfile], stdout=PIPE)
             stdout, _ = p.communicate()
+            print(f"stdout: |{stdout}|")
             line = stdout.decode('utf8').strip()
+            print(f"line: |{line}|")
             if line:
                 _, scmd = line.split(' ', 1)
                 return scmd
@@ -64,7 +67,8 @@ def getpcmd(pid):
         try:
             with open('/proc/{0}/cmdline'.format(pid), 'r') as fh:
                 return fh.read().replace('\0', ' ').rstrip()
-        except IOError:
+        except IOError as err:
+            print(f"err opening process file: {err}")
             # the system may not allow reading the command line
             # of a process owned by another user
             pass
@@ -79,9 +83,17 @@ def get_info(pid_dir, my_pid=None):
         my_pid = os.getpid()
 
     my_cmd = getpcmd(my_pid)
+    print(f"cmd (1): |{my_cmd}|")
+    if not my_cmd:
+        print(f"attempt two")
+        my_cmd = getpcmd(my_pid)
+        print(f"cmd (2): |{my_cmd}|")
     cmd_hash = my_cmd.encode('utf8')
     pid_file = os.path.join(pid_dir, hashlib.new('md5', cmd_hash, usedforsecurity=False).hexdigest()) + '.pid'
 
+    print(f"pid: |{my_pid}|")
+    print(f"cmd: |{my_cmd}|")  # randomly contains an ENV key/value
+    print(f"pid_file: |{pid_file}|")
     return my_pid, my_cmd, pid_file
 
 
