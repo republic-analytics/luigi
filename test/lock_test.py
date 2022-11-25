@@ -36,13 +36,17 @@ class TestCmd(unittest.TestCase):
         else:
             command = ["sleep", "1"]
 
+        print(f"command: |{command}|")
         external_process = subprocess.Popen(command)
+        print(f"external process: |{external_process}|")
         result = luigi.lock.getpcmd(external_process.pid)
+        print(f"result: |{result}|")
 
         self.assertTrue(
             result.strip() in ["sleep 1", '[sleep]', 'ping 1.1.1.1 -w 1000']
         )
         external_process.kill()
+        self.assertTrue(False)  # force failure to check output
 
 
 class LockTest(unittest.TestCase):
@@ -59,10 +63,12 @@ class LockTest(unittest.TestCase):
     def test_get_info(self):
         try:
             p = subprocess.Popen(["yes", u"à我ф"], stdout=subprocess.PIPE)
+            print(f"popen: {p}")
             pid, cmd, pid_file = luigi.lock.get_info(self.pid_dir, p.pid)
         finally:
             p.kill()
         self.assertEqual(cmd, u'yes à我ф')
+        self.assertTrue(False)  # force failure to check output
 
     def test_acquiring_free_lock(self):
         acquired = luigi.lock.acquire_for(self.pid_dir)
