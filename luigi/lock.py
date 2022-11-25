@@ -66,7 +66,6 @@ def getpcmd(pid):
         # https://github.com/spotify/luigi/pull/1876
         try:
             with open('/proc/{0}/cmdline'.format(pid), 'r') as fh:
-                print(f"opening file: /proc/{pid}/cmdline")
                 return fh.read().replace('\0', ' ').rstrip()
         except IOError as err:
             print(f"err opening process file: {err}")

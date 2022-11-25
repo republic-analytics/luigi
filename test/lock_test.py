@@ -36,10 +36,10 @@ class TestCmd(unittest.TestCase):
         else:
             command = ["sleep", "1"]
 
-        print(f"command: |{command}|")
         external_process = subprocess.Popen(command)
-        print(f"external process: |{external_process}|")
         result = luigi.lock.getpcmd(external_process.pid)
+        print(f"command: |{command}|")
+        print(f"external process: |{external_process}|")
         print(f"result: |{result}|")
 
         self.assertTrue(
@@ -63,8 +63,8 @@ class LockTest(unittest.TestCase):
     def test_get_info(self):
         try:
             p = subprocess.Popen(["yes", u"à我ф"], stdout=subprocess.PIPE)
-            print(f"popen: {p}")
             pid, cmd, pid_file = luigi.lock.get_info(self.pid_dir, p.pid)
+            print(f"popen: {p}")
         finally:
             p.kill()
         self.assertEqual(cmd, u'yes à我ф')
