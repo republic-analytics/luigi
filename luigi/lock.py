@@ -84,6 +84,11 @@ def get_info(pid_dir, my_pid=None):
         my_pid = os.getpid()
 
     my_cmd = getpcmd(my_pid)
+    print(f"cmd (1): |{my_cmd}|")
+    if not my_cmd:
+        print(f"attempt two")
+        my_cmd = getpcmd(my_pid)
+        print(f"cmd (2): |{my_cmd}|")
     cmd_hash = my_cmd.encode('utf8')
     pid_file = os.path.join(pid_dir, hashlib.new('md5', cmd_hash, usedforsecurity=False).hexdigest()) + '.pid'
 
