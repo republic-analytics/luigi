@@ -1,0 +1,47 @@
+name: luigi unit tests
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'luigi/**'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/**'
+      - 'doc/**'
+      - 'luigi/**'
+      - 'scripts/**'
+      - 'tests/**'
+
+defaults:
+  run:
+    working-directory: ./
+
+jobs:
+  tests:
+    name: "luigi: py${{ matrix.python-version }} (ubuntu)"
+    runs-on: "ubuntu-latest"
+    strategy:
+      matrix:
+        python-version: ["3.6", "3.7"]
+      # do not cancel other jobs in matrix if one fails
+      fail-fast: false
+    steps:
+      - uses: "actions/checkout@v2"
+      - uses: "actions/setup-python@v1"
+        with:
+          python-version: "${{ matrix.python-version }}"
+      - name: "Install dependencies"
+        run: |
+          set -xe
+          python -VV
+          python -m site
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install --upgrade virtualenv 'tox==3.12' 'tox-gh-actions==2.2.0'
+      - name: "List installed dependencies"
+        run: "python -m pip freeze"
+      - name: "Run tox with ${{ matrix.python-version }}"
+        run: "python -m tox -c tox.ini"
