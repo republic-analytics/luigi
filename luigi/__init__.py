@@ -18,7 +18,7 @@
 Package containing core luigi functionality.
 """
 
-from luigi.__meta__ import __version__
+from luigi.__version__ import VERSION
 
 from luigi import task
 from luigi.task import (
@@ -55,7 +55,7 @@ from luigi.execution_summary import LuigiStatusCode
 from luigi import event
 from luigi.event import Event
 
-
+__version__ = VERSION
 __all__ = [
     'task', 'Task', 'Config', 'ExternalTask', 'WrapperTask', 'namespace', 'auto_namespace',
     'DynamicRequirements',
