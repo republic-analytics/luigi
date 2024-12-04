@@ -1,5 +1,5 @@
 IMAGE:=luigi-test
-TAG:=3.12
+TAG:=3.11
 
 .PHONY: clean
 clean:
