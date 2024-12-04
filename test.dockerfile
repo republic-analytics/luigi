@@ -2,9 +2,11 @@ FROM ghcr.io/astral-sh/uv:debian-slim
 
 # install system packages
 #   - ca-certificates - download from pypi.org/simple/tornado
+#   - clang - building specific python dependencies which don't have pre-built wheels (e.g. psutil)
 RUN apt update -y && \
     apt install -y \
         ca-certificates \
+        clang \
     && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
