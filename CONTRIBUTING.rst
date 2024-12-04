@@ -10,7 +10,7 @@ Running the tests
 
 
 We are always happy to receive Pull Requests. When you open a PR, it will
-automatically build on Travis. So you're not strictly required to test the
+automatically build on Github Actions. So you're not strictly required to test the
 patch locally before submitting it.
 
 If you do want to run the tests locally you'll need to ``pip install tox`` and
@@ -45,7 +45,7 @@ For `cdh` and `hdp`, tox will download the hadoop distribution for you. You
 however have to have Java installed and the `JAVA_HOME` environment variable
 set.
 
-For more details, check out the ``.travis.yml`` and ``tox.ini`` files.
+For more details, check out the ``.github/workflows/pythonbuild.yml`` and ``tox.ini`` files.
 
 Writing documentation
 =====================
