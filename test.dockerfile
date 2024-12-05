@@ -20,6 +20,7 @@ RUN uv python install "${PYTHON_VERSION}"
 # install test dependencies (tox)
 RUN uv venv && \
     uv pip install --no-cache-dir \
+        codecov \
         setuptools \
         "tox<4.0"
 
@@ -35,6 +36,9 @@ COPY .coveragerc tox.ini .
 COPY doc ./doc
 COPY scripts ./scripts
 COPY test ./test
+
+# copy .git/ to support codecov
+COPY .git ./.git
 
 # entrypoint
 ENTRYPOINT ["uv", "run"]

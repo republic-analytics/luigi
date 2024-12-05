@@ -13,7 +13,8 @@ test:
 		-t "$(IMAGE):$(TAG)" \
 		-f test.dockerfile \
 		--build-arg PYTHON_VERSION="$(TAG)" \
-		. && \
+		.
+	# when running in CI, provide `-e CI=true` to support codecov docker execution
 	docker run \
 		--rm \
 		--platform=linux/amd64 \
