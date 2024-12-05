@@ -16,4 +16,5 @@ test:
 	docker run \
 		--rm \
 		--platform=linux/amd64 \
+		-v ./.tox:/app/.tox \
 		"$(IMAGE):$(TAG)" $(CMD)
