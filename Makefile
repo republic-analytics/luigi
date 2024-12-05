@@ -4,6 +4,7 @@ TAG:=3.11
 .PHONY: clean
 clean:
 	docker image prune --force
+	rm -rf .tox
 
 .PHONY: test
 test:
