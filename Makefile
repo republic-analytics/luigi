@@ -18,4 +18,5 @@ test:
 		--rm \
 		--platform=linux/amd64 \
 		-v ./.tox:/app/.tox \
+		-v /var/run/docker.sock:/var/run/docker.sock \
 		"$(IMAGE):$(TAG)" $(CMD)

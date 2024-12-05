@@ -3,10 +3,12 @@ FROM ghcr.io/astral-sh/uv:debian-slim
 # install system packages
 #   - ca-certificates - download from pypi.org/simple/tornado
 #   - clang - building specific python dependencies which don't have pre-built wheels (e.g. psutil)
+#   - docker.io - execute docker commands (e.g. azureblob tests); prefer to mount host's docker socket so that sibling containers are created instead of child containers
 RUN apt update -y && \
     apt install -y \
         ca-certificates \
         clang \
+        docker.io \
     && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
