@@ -54,7 +54,6 @@ luigi-deps-tree = "luigi.tools.deps_tree:main"
 Homepage = "https://github.com/spotify/luigi"
 
 [dependency-groups]
-# TODO: install this extra dependency group when READTHEDOCS env var == "True"
 readthedocs = [
     # TODO: how to remove "python-daemon"
     "sphinx>=1.4.4",  # Value mirrored in doc/conf.py
