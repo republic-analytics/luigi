@@ -38,6 +38,7 @@ dynamic = [
     "version",  # defer to [tool.hatch.version]
 ]
 
+# project.optional-dependencies are published in the project metadata in PyPI and installable as "extras" (e.g. `pip install "luigi[toml]"`)
 [project.optional-dependencies]
 jsonschema = ["jsonschema"]
 prometheus = ["prometheus-client>=0.5,<0.15"]
@@ -53,6 +54,7 @@ luigi-deps-tree = "luigi.tools.deps_tree:main"
 [project.urls]
 Homepage = "https://github.com/spotify/luigi"
 
+# dependency-groups are NOT exposed from PyPI and only aid in local development and CI (places where the code is checked out)
 [dependency-groups]
 readthedocs = [
     # TODO: how to remove "python-daemon"
